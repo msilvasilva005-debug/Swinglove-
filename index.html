@@ -28,7 +28,7 @@ h1 {
     color: #ff0066;
 }
 
-input {
+input, select {
     width: 90%;
     padding: 10px;
     margin: 8px 0;
@@ -90,6 +90,11 @@ button:hover {
     <h1>Cadastro</h1>
     <input type="text" id="regUser" placeholder="Usuário">
     <input type="password" id="regPass" placeholder="Senha">
+    <select id="regProfile">
+        <option value="">Selecione o perfil</option>
+        <option value="Single">Single</option>
+        <option value="Casal">Casal</option>
+    </select>
     <button onclick="register()">Cadastrar</button>
     <button onclick="showLogin()">Voltar</button>
 </div>
@@ -97,6 +102,7 @@ button:hover {
 <!-- HOME -->
 <div class="container hidden" id="home">
     <h1>Bem-vindo ao Swing Love 😈</h1>
+    <p id="userProfile"></p>
 
     <div class="pix">
         <h3>Acesso Premium</h3>
@@ -125,14 +131,17 @@ function showLogin() {
 function register() {
     let user = document.getElementById("regUser").value;
     let pass = document.getElementById("regPass").value;
+    let profile = document.getElementById("regProfile").value;
 
-    if(user === "" || pass === "") {
-        alert("Preencha todos os campos");
+    if(user === "" || pass === "" || profile === "") {
+        alert("Preencha todos os campos e escolha um perfil");
         return;
     }
 
     localStorage.setItem("user", user);
     localStorage.setItem("pass", pass);
+    localStorage.setItem("profile", profile);
+
     alert("Cadastro realizado!");
     showLogin();
 }
@@ -143,10 +152,12 @@ function login() {
 
     let savedUser = localStorage.getItem("user");
     let savedPass = localStorage.getItem("pass");
+    let savedProfile = localStorage.getItem("profile");
 
     if(user === savedUser && pass === savedPass) {
         document.getElementById("login").classList.add("hidden");
         document.getElementById("home").classList.remove("hidden");
+        document.getElementById("userProfile").innerText = "Perfil: " + savedProfile;
     } else {
         alert("Usuário ou senha incorretos");
     }
