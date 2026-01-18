@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Swing Love</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #000, #111);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+}
+
+h1 {
+    color: #ff0066;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    width: 95%;
+    padding: 12px;
+    background: #ff0066;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #cc0052;
+}
+
+.hidden {
+    display: none;
+}
+
+.pix {
+    background: #000;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.whatsapp {
+    background: #25D366;
+    margin-top: 15px;
+}
+
+.whatsapp:hover {
+    background: #1ebe5d;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="container" id="login">
+    <h1>Swing Love 🔥</h1>
+    <input type="text" id="loginUser" placeholder="Usuário">
+    <input type="password" id="loginPass" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+    <p>Não tem conta?</p>
+    <button onclick="showRegister()">Cadastrar</button>
+</div>
+
+<!-- CADASTRO -->
+<div class="container hidden" id="register">
+    <h1>Cadastro</h1>
+    <input type="text" id="regUser" placeholder="Usuário">
+    <input type="password" id="regPass" placeholder="Senha">
+    <button onclick="register()">Cadastrar</button>
+    <button onclick="showLogin()">Voltar</button>
+</div>
+
+<!-- HOME -->
+<div class="container hidden" id="home">
+    <h1>Bem-vindo ao Swing Love 😈</h1>
+
+    <div class="pix">
+        <h3>Acesso Premium</h3>
+        <p>Faça o Pix para liberar:</p>
+        <strong>📌 Pix: 21982859872</strong>
+        <p>Após o pagamento, clique abaixo:</p>
+    </div>
+
+    <button class="whatsapp" onclick="openWhatsApp()">📲 Falar no WhatsApp</button>
+
+    <br><br>
+    <button onclick="logout()">Sair</button>
+</div>
+
+<script>
+function showRegister() {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("register").classList.remove("hidden");
+}
+
+function showLogin() {
+    document.getElementById("register").classList.add("hidden");
+    document.getElementById("login").classList.remove("hidden");
+}
+
+function register() {
+    let user = document.getElementById("regUser").value;
+    let pass = document.getElementById("regPass").value;
+
+    if(user === "" || pass === "") {
+        alert("Preencha todos os campos");
+        return;
+    }
+
+    localStorage.setItem("user", user);
+    localStorage.setItem("pass", pass);
+    alert("Cadastro realizado!");
+    showLogin();
+}
+
+function login() {
+    let user = document.getElementById("loginUser").value;
+    let pass = document.getElementById("loginPass").value;
+
+    let savedUser = localStorage.getItem("user");
+    let savedPass = localStorage.getItem("pass");
+
+    if(user === savedUser && pass === savedPass) {
+        document.getElementById("login").classList.add("hidden");
+        document.getElementById("home").classList.remove("hidden");
+    } else {
+        alert("Usuário ou senha incorretos");
+    }
+}
+
+function logout() {
+    document.getElementById("home").classList.add("hidden");
+    document.getElementById("login").classList.remove("hidden");
+}
+
+function openWhatsApp() {
+    window.open("https://wa.me/5521982859872", "_blank");
+}
+</script>
+
+</body>
+</html>
