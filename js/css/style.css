@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #000, #111);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+}
+
+h1 {
+    color: #ff0066;
+}
+
+input, select {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    width: 95%;
+    padding: 12px;
+    background: #ff0066;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #cc0052;
+}
+
+.hidden {
+    display: none;
+}
+
+.pix {
+    background: #000;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.whatsapp {
+    background: #25D366;
+    margin-top: 15px;
+}
+
+.whatsapp:hover {
+    background: #1ebe5d;
+  }
